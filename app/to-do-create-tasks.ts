@@ -26,17 +26,39 @@ tasks.push(new ToDoList.WorkTask(tomorrow, "Buy a new shirt.", "Low", people.tho
 tasks.push(new ToDoList.WorkTask(nextDay, "Clean ceiling.", "Low", people.loki));
 
 console.log(tasks);
-// var thorTasks = ToDoList.describeTasksForPerson(people.thor, tasks);
-// console.log("Here are Thor's tasks: ");
-// for(var task of thorTasks){
-//   console.log(task);
-// }
 
 $(function() {
   $('#all-tasks').append("<h2>Here are all of the Tasks: </h2><br><ul>");
   for(var task of tasks) {
     $('#all-tasks').append("<li>" + task.description + " - "+ task.priority + "</li>");
   }
+  $('#thor-tasks').append("</ul>");
+
+  var allTasks = ToDoList.describeTasksByType(tasks);
+  var homeTasks = allTasks[0];
+  var workTasks = allTasks[1];
+  var hobbyTasks = allTasks[2];
+
+  $('#HomeTask').append("<h2>Home Tasks: </h2><br><ul>");
+
+  for(var task of homeTasks) {
+    $('#HomeTask').append("<li>" + task + "</li>");
+  }
+
+  $('#WorkTask').append("<h2>Work Tasks: </h2><br><ul>");
+
+  for(var task of workTasks) {
+    $('#WorkTask').append("<li>" + task + "</li>");
+  }
+
+  $('#HobbyTask').append("<h2>Hobby Tasks: </h2><br><ul>");
+
+  for(var task of hobbyTasks) {
+    $('#HobbyTask').append("<li>" + task + "</li>");
+  }
+
+
+
   $('#thor-tasks').append("</ul>");
 
   var thorTasks = ToDoList.describeTasksForPerson(people.thor, tasks);
