@@ -57,15 +57,47 @@ $(function() {
     $('#HobbyTask').append("<li>" + task + "</li>");
   }
 
+  var allTasksPriority = ToDoList.getTasksByPriority(tasks);
+  var highPriority = allTasksPriority[0];
+  var medPriority = allTasksPriority[1];
+  var lowPriority = allTasksPriority[2];
 
+  $('#highPriority').append("<h2>Hi Priority Tasks: </h2><br><ul>");
 
-  $('#thor-tasks').append("</ul>");
+  for(var priority of highPriority) {
+    $('#highPriority').append("<li>" + priority + "</li>");
+  }
 
+  $('#medPriority').append("<h2>Medium Priority Tasks: </h2><br><ul>");
+
+  for(var priority of medPriority) {
+    $('#medPriority').append("<li>" + priority + "</li>");
+  }
+
+  $('#lowPriority').append("<h2>Low Priority Tasks: </h2><br><ul>");
+
+  for(var priority of lowPriority) {
+    $('#lowPriority').append("<li>" + priority + "</li>");
+  }
+
+  var dianeTasks = ToDoList.describeTasksForPerson(people.diane, tasks);
+  console.log(dianeTasks);
+  var lokiTasks = ToDoList.describeTasksForPerson(people.loki, tasks);
   var thorTasks = ToDoList.describeTasksForPerson(people.thor, tasks);
+  console.log("Thor's tasks are: " + thorTasks);
+
+  var dianeHighTask = ToDoList.describeHighPriorityPerson(people.diane, tasks);
+  $('#dianeHighTask').append("<h2>Here is Diane's 1st High Priority Task: </h2><ul>").append("<li>" + dianeHighTask + "</li></ul>");
+
+  var lokiHighTask = ToDoList.describeHighPriorityPerson(people.loki, lokiTasks);
+  $('#lokiHighTask').append("<h2>Here's Loki's 1st High Priority Task: </h2><ul>").append("<li>" + lokiHighTask + "</li></ul>");
+
   $('#thor-tasks').append("<h2>Here are Thor's Tasks: </h2><br><ul>");
 
   for(var task of thorTasks) {
     $('#thor-tasks').append("<li>" + task + "</li>");
   }
   $('#thor-tasks').append("</ul>");
+
+
 }); //end of when ready
